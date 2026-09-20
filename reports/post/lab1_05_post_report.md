@@ -1,6 +1,6 @@
 # 실험 후 레포트: LAB1-05 4비트 크기 비교기
 
-작성자: 엄상혁 (학번 ______) / 조: g조 / 실험일: 2026-09-14 / 소스 커밋: `57fe948` (https://github.com/dhawldnjs010-star/lab1_05_compare_4/commit/57fe948e350462e2b855d6ffb6848f4a14982789) / 구현 도구·버전: Vivado 2026.1 (Build 6511674) / part: xc7s75fgga484-1 / top: `compare_4` (시뮬레이션 top `tb_compare_4`) / XDC: `constraints/pins.xdc`
+작성자: 엄상혁 (학번 2025440084) / 조: g조 / 실험일: 2026-09-14 / 소스 커밋: `57fe948` (https://github.com/dhawldnjs010-star/lab1_05_compare_4/commit/57fe948e350462e2b855d6ffb6848f4a14982789) / 구현 도구·버전: Vivado 2026.1 (Build 6511674) / part: xc7s75fgga484-1 / top: `compare_4` (시뮬레이션 top `tb_compare_4`) / XDC: `constraints/pins.xdc`
 
 경로: Vivado 경로로 수행했다.
 
@@ -48,7 +48,7 @@
 
 - Hardware Manager 콘솔에서 `program_hw_devices`가 2회 실행되었다.
 
-- 배선·입력·출력이 보이는 영상: `evidence/board/videos/20260914_164104.mp4` (2026-09-14 16:41:04 촬영).
+- 배선·입력·출력이 보이는 영상: [Google Drive 폴더](https://drive.google.com/drive/folders/126FWzC_Kg7qLM5CBnbDl9t1A2ELAd-wx)의 `20260914_164104.mp4` (2026-09-14 16:41:04 촬영).
 
 
 | 조건 | 예상 출력 | 실측 출력 | 사진/영상 시각 | 일치 여부·원인 |
@@ -73,4 +73,4 @@
 
 ## 제출 링크
 
-소스 커밋: https://github.com/dhawldnjs010-star/lab1_05_compare_4/commit/57fe948e350462e2b855d6ffb6848f4a14982789 / 실험 전 레포트: `reports/pre/lab1_05_pre_report.md` / 로그·VCD: `evidence/simulation.txt`, `evidence/wave.vcd`, `evidence/vivado/` / bit·해시: 위 3절 (SHA-256 `a40b87b45064c0c5487befe1d558b6b3de55755c3f5461f486209ce61ef70bdf`) / 영상: `evidence/board/videos/20260914_164104.mp4` / GitHub에서 링크 확인한 날짜: ______
+소스 커밋: https://github.com/dhawldnjs010-star/lab1_05_compare_4/commit/57fe948e350462e2b855d6ffb6848f4a14982789 / 실험 전 레포트: `reports/pre/lab1_05_pre_report.md` / 로그·VCD: `evidence/simulation.txt`, `evidence/wave.vcd`, `evidence/vivado/` / bit·해시: 위 3절 (SHA-256 `a40b87b45064c0c5487befe1d558b6b3de55755c3f5461f486209ce61ef70bdf`) / 영상: https://drive.google.com/drive/folders/126FWzC_Kg7qLM5CBnbDl9t1A2ELAd-wx (`20260914_164104.mp4`) / GitHub에서 링크 확인한 날짜: ______
