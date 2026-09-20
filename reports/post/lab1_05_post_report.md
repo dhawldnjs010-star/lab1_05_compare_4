@@ -1,74 +1,76 @@
-# LAB1-05 4비트 크기 비교기 — 실험 후 레포트
+# 실험 후 레포트: LAB1-05 4비트 크기 비교기
 
-- 과목: 전자전기컴퓨터설계실험Ⅱ / LAB1 조합논리 (교육 번호 05, 기존 번호 9)
-- 작성자: 엄상혁 (학번 ______) / 조: ______ / 실험일: 2026-09-14 / 작성일: 2026-09-__
+작성자: 엄상혁 (학번 ______) / 조: g조 / 실험일: 2026-09-14 / 소스 커밋: `57fe948` (https://github.com/dhawldnjs010-star/lab1_05_compare_4/commit/57fe948e350462e2b855d6ffb6848f4a14982789) / 구현 도구·버전: Vivado 2026.1 (Build 6511674) / part: xc7s75fgga484-1 / top: `compare_4` (시뮬레이션 top `tb_compare_4`) / XDC: `constraints/pins.xdc`
 
-> 미수행·미확인 항목은 **미완료**로 표시했고 후속 확인을 적었다. bit 파일 생성만으로 보드 동작 성공을 선언하지 않는다.
+경로: Vivado 경로로 수행했다.
 
-## 1. 구현 환경 기록
+## Vivado 시뮬레이션 — Vivado 경로
 
-| 항목 | 기록 |
-|---|---|
-| Vivado | 2026.1 (win64, Build 6511674) |
-| part | xc7s75fgga484-1 (Spartan-7, fgga484, speed -1) |
-| 설계 top | `compare_4` (Design Sources) |
-| 시뮬레이션 top | `tb_compare_4` (`sim/tb_compare_4.sv`) |
-| 핀 제약 | `constraints/pins.xdc`, IOSTANDARD LVCMOS33 |
-| 소스 커밋 | `57fe948` — https://github.com/dhawldnjs010-star/lab1_05_compare_4/commit/57fe948e350462e2b855d6ffb6848f4a14982789 |
-| Vivado 프로젝트 | 없음 |
+프로젝트 생성·등록: RTL(`src/compare_4.v`)은 Design Sources, TB(`sim/tb_compare_4.sv`)는 Simulation Sources, XDC(`constraints/pins.xdc`)는 Constraints에 추가했다(Copy sources 끔). 설계 top은 `compare_4`, 시뮬레이션 top은 `tb_compare_4`이다.
 
-## 2. VS Code(Icarus)와 Vivado 시뮬레이션 비교
-
-두 실행은 같은 RTL과 같은 자기검사 TB(`tb_compare_4`)를 사용했다.
-
-| 비교 항목 | VS Code (Icarus) | Vivado (xsim) |
-|---|---|---|
-| PASS 문구 | `LAB1_PASS compare_4 cases=256` | 미수행 |
-| 검사 수 | 256개 | - |
-| 종료 시각 | 2560 ns | - |
-| 로그 위치 | `evidence/simulation.txt` | `-` |
-| 입력·출력 | 진리표와 일치 (사전 레포트 2절) | - |
-
-일치 여부와 차이 원인: ______
-
-## 3. 합성·구현·비트스트림
-
-| 단계 | 결과 |
-|---|---|
-| Vivado 프로젝트 | **없음** — 이 폴더에는 Vivado 프로젝트(`.xpr`)와 실행 기록이 없다. **미수행** |
-
-
-
-현재 `constraints/pins.xdc` 상태: **정상** — 모든 포트(11개)에 PACKAGE_PIN과 IOSTANDARD(LVCMOS33)가 지정되어 있다.
-
-> **수정 이력:** 끝줄이 잘려 있던 XDC를 완성했다(b[3:0]·o[2:0]의 IOSTANDARD 추가). 이제 Vivado 프로젝트를 만들어 구현·bit 생성·보드 확인을 진행하면 된다(**미완료**).
-
-## 4. 실제 장치 기록 — 미완료
-
-조건: Spartan-7 XC7S75 교육용 보드, Hardware Manager → Open target → Auto Connect → 장치 `xc7s75` 확인 → Program Device로 bit 기록.
-
-- 장치 인식·기록 완료: ☐
-- 조교 무작위 선정 여부와 출석부 기록: ☐ 선정 ☐ 미선정
-
-| 번호 | 입력 | 예상 출력 | 실제 출력 | 사진·영상 |
+| 실행 | PASS 문구 | 검사 수 | 종료 시각 | 로그 |
 |---|---|---|---|---|
-| 1 | ______ | ______ | ______ | `evidence/board/photos/______` |
-| 2 | ______ | ______ | ______ | `evidence/board/videos/______` |
+| VS Code (Icarus) | `LAB1_PASS compare_4 cases=256` | 256개 | 2560 ns | `evidence/simulation.txt` |
+| Vivado xsim | `LAB1_PASS compare_4 cases=256` | 256개 | 2560 ns | `evidence/vivado/xsim_simulate.log`, `evidence/vivado/console_lab1_05_sanghyeok_0920.txt` |
 
-## 5. 결과 해석
+- Icarus와 Vivado xsim의 PASS 문구, 검사 수, 종료 시각이 같다.
 
-- 예상값·두 시뮬레이션·실측의 일치 또는 차이와 원인: ______
-- 사전 수정 실험에서 배운 점(실패 원인·복구): ______
-- 시험 조건(입력 범위·경계 조건)에 대한 판단: ______
+- TB 종료 시각(2560 ns)이 Vivado 기본 실행 시간(1000 ns)보다 길어 `run all`(또는 `xsim.simulate.runtime` 3000ns)로 실행했다.
 
-## 6. 미수행 항목과 후속 확인
+- 파형: `evidence/wave.vcd`(Icarus VCD).
 
-- [ ] Vivado 프로젝트 생성 → 시뮬레이션·합성·구현·bit 생성
-- [ ] 보드 기록·사진·영상 및 조교 확인(4절)
+## 오픈소스 실행 환경 — CLI 경로
 
-## 7. 제출 점검
+이 랩은 Vivado 경로로 수행했다. CLI 경로는 사용하지 않았다.
 
-- [ ] Vivado 버전·part·top·핀 제약·커밋 기록(1절)
-- [ ] VS Code/Vivado 비교(2절), 합성·구현·bit(3절)
-- [ ] 장치 기록·사진·영상(4절), 해석(5절), 미완료 항목(6절)
-- [ ] `reports/post/`, `evidence/`에 저장 후 push, GitHub 웹에서 사진·영상 확인
+## 합성·구현·비트스트림
+
+| 항목 | 결과 |
+|---|---|
+| Run Synthesis | 완료. `Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.` |
+| Run Implementation | 배치·배선 완료 |
+| Generate Bitstream | `write_bitstream completed successfully` |
+| 이용률 | Slice LUT 5 / Bonded IOB 11 (xc7s75: LUT 48,000 / IOB 338) |
+| DRC | Checks found: 1 — CFGBVS-1(Warning) |
+| Methodology | Checks found: 0 |
+| 타이밍 | WNS/WHS = inf, 실패 endpoint 0. 사용자 타이밍 제약이 없는 조합회로라 통과 수치가 아니다(`Timing 38-313`). |
+| 경고 | `Place 46-29`, `Power 33-232`, `Timing 38-313` |
+
+- bit 경로: `vivado/project_1.runs/impl_1/compare_4.bit` (Git 제외) / 크기: 3,687,012 bytes / SHA-256: `a40b87b45064c0c5487befe1d558b6b3de55755c3f5461f486209ce61ef70bdf`
+
+- 보고서 원본: `evidence/vivado/`의 `synth_runme.log`, `impl_runme.log`, `drc_routed.rpt`, `methodology_drc_routed.rpt`, `timing_summary_routed.rpt`, `utilization_placed.rpt`.
+
+- DRC의 `CFGBVS-1`은 CONFIG_VOLTAGE·CFGBVS 속성이 지정되지 않았다는 경고이다. 실제 보드의 구성 뱅크 전압과 대조해 해석하며 오류는 아니다.
+
+## 실제 보드 기록·실측
+
+연결된 장치: Spartan-7 XC7S75 교육용 보드(part `xc7s75fgga484-1`), 기록 도구: Vivado Hardware Manager (Open target → Program Device). 콘솔 로그: `evidence/board/console_lab1_05_teammate.txt`.
+
+- Hardware Manager 콘솔에서 `program_hw_devices`가 2회 실행되었다.
+
+- 배선·입력·출력이 보이는 영상: `evidence/board/videos/20260914_164104.mp4` (2026-09-14 16:41:04 촬영).
+
+
+| 조건 | 예상 출력 | 실측 출력 | 사진/영상 시각 | 일치 여부·원인 |
+|---|---|---|---|---|
+| a=0101 b=0101 | o=010 (a>b=0, a==b=1, a<b=0) | 예상 출력과 같음 | `20260914_164104.mp4` (2026-09-14 16:41:04) | 일치 |
+| a=1001 b=0011 | o=100 (a>b=1, a==b=0, a<b=0) | 예상 출력과 같음 | `20260914_164104.mp4` (2026-09-14 16:41:04) | 일치 |
+| a=0011 b=1001 | o=001 (a>b=0, a==b=0, a<b=1) | 예상 출력과 같음 | `20260914_164104.mp4` (2026-09-14 16:41:04) | 일치 |
+| a=0000 b=0000 | o=010 (a>b=0, a==b=1, a<b=0) | 예상 출력과 같음 | `20260914_164104.mp4` (2026-09-14 16:41:04) | 일치 |
+| a=1111 b=0000 | o=100 (a>b=1, a==b=0, a<b=0) | 예상 출력과 같음 | `20260914_164104.mp4` (2026-09-14 16:41:04) | 일치 |
+| a=0000 b=1111 | o=001 (a>b=0, a==b=0, a<b=1) | 예상 출력과 같음 | `20260914_164104.mp4` (2026-09-14 16:41:04) | 일치 |
+
+
+실측은 작성자가 보드에서 직접 확인한 결과이다.
+
+## 비교·결론
+
+- 예상값(진리표) → VS Code(Icarus) `LAB1_PASS compare_4 cases=256` → Vivado xsim `LAB1_PASS compare_4 cases=256`: 검사 256개 모두 일치하고 종료 시각 2560 ns로 같다.
+
+- 실측: 위 표의 모든 조건에서 예상 출력과 같았다. 불일치는 없었다.
+
+- 구현 성공(bit 생성)만으로 동작을 확인한 것으로 보지 않고, 위 실측 표를 별도로 확인했다.
+
+## 제출 링크
+
+소스 커밋: https://github.com/dhawldnjs010-star/lab1_05_compare_4/commit/57fe948e350462e2b855d6ffb6848f4a14982789 / 실험 전 레포트: `reports/pre/lab1_05_pre_report.md` / 로그·VCD: `evidence/simulation.txt`, `evidence/wave.vcd`, `evidence/vivado/` / bit·해시: 위 3절 (SHA-256 `a40b87b45064c0c5487befe1d558b6b3de55755c3f5461f486209ce61ef70bdf`) / 영상: `evidence/board/videos/20260914_164104.mp4` / GitHub에서 링크 확인한 날짜: ______
